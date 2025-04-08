@@ -8,7 +8,7 @@ export default function HeroComponent() {
     <Container>
         <Row className="float-start">
             
-    <Card className="position-relative mx-auto shadow" style={{ width: '785px', height: '550px', marginBottom: '2em', marginTop: '3em'}}>
+    <Card className="position-relative mx-auto shadow" style={{ maxWidth: '600px' }}>
          <div className="cover-container">
       <Card.Img variant="top" src="data:image/jpeg;base64,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" 
        style={{ height: '250px', objectFit: 'cover'}} className='w-100' alt="Epicode" />
@@ -22,27 +22,23 @@ export default function HeroComponent() {
        
 
       <Card.Body className='d-flex'>
-        
+        <Col>
+        <Card.Title className='float-start'>Ivan Ranza</Card.Title>
+        </Col>
 
         
         <Card.Text >
           <Row className='flex-column'>
-            <Col  className='d-flex'>
-            <h3 >Ivan Ranza</h3></Col>
-            <Col  className='d-flex'>
+            <Col>
             <p>Co-Founder & CEO at EPICODE & EPICODE Institute of Technology</p>
             </Col>
-            <Col  className='d-flex'>
-            <p >Roma, Lazio, Italia <a href="*" style={{ textDecoration: 'none' }}>Informazioni di contatto</a></p>
+            <Col>
+            <p>Roma, Lazio, Italia </p>
             </Col>
-            <Col className='d-flex'>
-            <p>4.917 follower 
-            Più di 500 collegamenti</p>
-            </Col>
-            <Col className='d-flex'>
-            <Button className='button' variant="primary">Messaggio</Button>
-            <Button className='button'variant="light"> + Segui</Button>
-            <Button  className='button'variant="light">Altro</Button>
+            <Col>
+            <Button variant="light">Messaggio</Button>
+            <Button variant="light"> + Segui</Button>
+            <Button variant="light">Altro</Button>
             </Col>
             </Row>
 
