@@ -7,6 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import HeroComponent from './component/HeroComponent';
 import InfoComponent from './component/InfoComponent';
 import ActivityComponent from './component/ActivityComponent';
+import ExperienceComponent from './component/ExperienceComponent';
 
 
 
@@ -14,9 +15,9 @@ function App() {
 
   return (
     <>
-     
+
       <Mynav />
-   
+
       <Container className='d-flex'>
         <Row className='flex-column'>
           <Col md={8}>
@@ -31,6 +32,7 @@ function App() {
       </Container>
 
       <ActivityComponent/>
+      <ExperienceComponent/>
     </>
   )
 }
