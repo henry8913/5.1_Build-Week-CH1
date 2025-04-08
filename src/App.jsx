@@ -1,5 +1,4 @@
-
-
+import Mynav from './component/Mynav';
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
@@ -15,7 +14,7 @@ function App() {
   return (
     <>
      
-   
+   <Mynav />
    <Container className='d-flex'>
       <Row className='flex-column'>
         <Col md={8}>
@@ -33,5 +32,3 @@ function App() {
 }
 
 export default App
-
-
