@@ -1,54 +1,56 @@
+
 import React from 'react'
-import { Card, Container, Image, Row, Col, Button} from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import './css/HeroComponent.css'
 
 export default function HeroComponent() {
   return (
-
-    <Container>
-        <Row className="float-start">
-            
-    <Card className="position-relative mx-auto shadow" style={{ maxWidth: '600px' }}>
-         <div className="cover-container">
-      <Card.Img variant="top" src="data:image/jpeg;base64,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" 
-       style={{ height: '250px', objectFit: 'cover'}} className='w-100' alt="Epicode" />
-         <Image
-          src="data:image/jpeg;base64,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"
-          roundedCircle
-          className='profile-img float-start'
+    <Card className="hero-card mb-2">
+      <div className="cover-container">
+        <Card.Img 
+          variant="top" 
+          src="https://media.licdn.com/dms/image/v2/D4D16AQHgPuQErUOj1g/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1715028641452?e=1749686400&v=beta&t=5qsUhvIeNVHjcEgw8GmFZxskRZCWnRsDDMaun2mgZH4" 
+          className="cover-image"
+        />
+        <img
+          src="https://media.licdn.com/dms/image/v2/C4E03AQEflj5sFpUNmA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1647262624341?e=1749686400&v=beta&t=TQ7RQNFTYieAtgMD8WkXWkRg0n2KxGhPU-cDr3VtwPI"
+          className="profile-img"
           alt="Foto profilo"
         />
+      </div>
+
+      <Card.Body>
+        <div className="profile-info">
+          <div className="main-info">
+            <h2>Ivan Ranza</h2>
+            <p className="role">Co-Founder & CEO at EPICODE & EPICODE Institute of Technology</p>
+            <p className="location">Roma, Lazio, Italia · <a href="#" className="contact-link">Informazioni di contatto</a></p>
+            <p className="connections">4.917 follower · Più di 500 collegamenti</p>
+          </div>
+          <div className="company-logos">
+            <div className="company-logo-item">
+              <img 
+                src="https://media.licdn.com/dms/image/v2/C4E0BAQHYgix-Ynux1A/company-logo_100_100/company-logo_100_100/0/1646830188798/epicodeschool_logo?e=1749686400&v=beta&t=hya8yRFhK7TYDJKpNy9gyph0MJmrmHUm8ZzRLweiVzc" 
+                alt="EPICODE" 
+              />
+              <span>EPICODE & EPICODE Institute of Technology</span>
+            </div>
+            <div className="company-logo-item">
+              <img 
+                src="https://media.licdn.com/dms/image/v2/C4E0BAQGGK49QM3u7NQ/company-logo_100_100/company-logo_100_100/0/1630650117382/insead_logo?e=1749686400&v=beta&t=65HcycbuLSiIVp8qZUKQk0rImkpzyfdhyqrRq3V256I" 
+                alt="INSEAD" 
+              />
+              <span>INSEAD</span>
+            </div>
+          </div>
         </div>
-       
-
-      <Card.Body className='d-flex'>
-        <Col>
-        <Card.Title className='float-start'>Ivan Ranza</Card.Title>
-        </Col>
-
         
-        <Card.Text >
-          <Row className='flex-column'>
-            <Col>
-            <p>Co-Founder & CEO at EPICODE & EPICODE Institute of Technology</p>
-            </Col>
-            <Col>
-            <p>Roma, Lazio, Italia </p>
-            </Col>
-            <Col>
-            <Button variant="light">Messaggio</Button>
-            <Button variant="light"> + Segui</Button>
-            <Button variant="light">Altro</Button>
-            </Col>
-            </Row>
-
-        </Card.Text>
+        <div className="action-buttons">
+          <Button variant="primary">Messaggio</Button>
+          <Button variant="outline-primary">+ Segui</Button>
+          <Button variant="outline-secondary">Altro</Button>
+        </div>
       </Card.Body>
     </Card>
-
-    </Row>
-    </Container>
   )
 }
-
-

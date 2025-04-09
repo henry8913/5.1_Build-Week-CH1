@@ -1,4 +1,3 @@
-
 .esperienze-container {
   background-color: white;
   border-radius: 10px;
@@ -34,6 +33,33 @@
   display: flex;
   gap: 12px;
 }
+
+@media (max-width: 768px) {
+  .experience-content {
+    flex-direction: column;
+    align-items: center; /* Center items vertically */
+  }
+  .company-logo {
+    margin: 0 auto 1rem;
+    width: 100%; /* Adjust logo size as needed */
+    max-width: 80px; /* Set a maximum width to prevent it from overflowing */
+    height: auto; /* Maintain aspect ratio */
+
+  }
+  .experience-details {
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .experience-title {
+    font-size: 14px; /* Adjust font size as needed */
+  }
+  .company-name, .experience-date, .experience-location {
+    font-size: 12px; /* Adjust font size as needed */
+    margin-bottom: 0.5rem;
+  }
+
+}
+
 
 .company-logo {
   width: 48px;
