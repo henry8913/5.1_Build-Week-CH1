@@ -8,6 +8,8 @@ import HeroComponent from './component/HeroComponent';
 import InfoComponent from './component/InfoComponent';
 import ActivityComponent from './component/ActivityComponent';
 import ExperienceComponent from './component/ExperienceComponent';
+import Footer from './component/Footer';
+import Sidebar from './component/Sidebar';
 
 
 
@@ -18,21 +20,29 @@ function App() {
 
       <Mynav />
 
-      <Container className='d-flex'>
-        <Row className='flex-column'>
-          <Col md={8}>
-            <HeroComponent/>
-          </Col >
-          <Col md={8}>
-            <InfoComponent/>
+      <Container fluid className="px-0 px-sm-3">
+        <Row className="mx-0">
+          <Col xs={12} md={8}>
+            <div className="mb-3">
+              <HeroComponent/>
+            </div>
+            <div className="mb-3">
+              <InfoComponent/>
+            </div>
+            <div className="mb-3">      
+              <ActivityComponent/>
+            </div>
+            <div className="mb-3">
+              <ExperienceComponent/>
+            </div>
           </Col>
-          <Col md={8}>      
+          <Col md={4}>
+            <Sidebar />
           </Col>
         </Row>
       </Container>
 
-      <ActivityComponent/>
-      <ExperienceComponent/>
+      <Footer />
     </>
   )
 }
