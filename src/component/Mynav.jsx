@@ -24,7 +24,7 @@ export default function Mynav() {
   }, [])
 
   useEffect(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/", {
+    fetch(import.meta.env.VITE_BASEURL, {
       headers: {
         'Authorization': authKey
       }
