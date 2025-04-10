@@ -5,6 +5,19 @@
   padding: 6px 12px;
   width: 280px;
   font-size: 14px;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .search-input {
+    width: 350px;
+  }
+  
+  .search-results {
+    width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
 }
 
 .search-input:focus {

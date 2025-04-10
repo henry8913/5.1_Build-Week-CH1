@@ -24,28 +24,33 @@ export default function Mynav() {
   }, [])
 
   useEffect(() => {
-    fetch(url, {
+    fetch(import.meta.env.VITE_BASEURL, {
       headers: {
         'Authorization': authKey
       }
     })
       .then((res) => res.json())
       .then((data) => setProfiles(data))
-      .catch((err) => console.log('Errore nel fetch:', err))
+      .catch((err) => console.log('Errore nel fetch dei profili:', err))
   }, []);
 
 
   
   const handleSearchChange = (e) => {
-    const value = e.target.value
-    setSearchTerm(value)
-    setShowResults(value.length > 0)
+    const value = e.target.value;
+    setSearchTerm(value);
+    setShowResults(value.length > 0);
 
-
-    const filtered = profiles.filter((profile) =>
-      profile.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredProfiles(filtered)
+    if (value.length > 0 && profiles.length > 0) {
+      const filtered = profiles.filter((profile) =>
+        profile.name?.toLowerCase().includes(value.toLowerCase()) ||
+        profile.surname?.toLowerCase().includes(value.toLowerCase()) ||
+        profile.title?.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredProfiles(filtered);
+    } else {
+      setFilteredProfiles([]);
+    }
   };
 
 
@@ -79,13 +84,13 @@ export default function Mynav() {
                 <ListGroup.Item key={profile._id} className="d-flex align-items-center gap-2" style={{cursor:'pointer'}}>
                   <img
                     src={profile.image}
-                    alt={profile.name}
+                    alt={`${profile.name} ${profile.surname}`}
                     width="32"
                     height="32"
                     className="rounded-circle"
                   />
                   <div>
-                    <strong>{profile.name}</strong>
+                    <strong>{profile.name} {profile.surname}</strong>
                     <div style={{ fontSize: '12px' }}>{profile.title}</div>
                   </div>
                 </ListGroup.Item>
