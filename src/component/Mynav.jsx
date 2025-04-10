@@ -7,9 +7,21 @@ export default function Mynav() {
   const [filteredProfiles, setFilteredProfiles] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [showResults, setShowResults] = useState(false)
+  const [user, setUser] = useState([])
 
-  const url = import.meta.env.VITE_BASEURL
+  const url = import.meta.env.VITE_APIURL
   const authKey = import.meta.env.VITE_APIKEY
+
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        'Authorization': authKey
+      }
+    })
+      .then((res) => res.json())
+      .then((user) => setUser(user))
+      .catch((err) => console.log('Errore nel fetch:', err))
+  }, [])
 
   useEffect(() => {
     fetch(url, {
@@ -111,13 +123,15 @@ export default function Mynav() {
     
     <Nav className="d-flex align-items-center gap-2">
       <Nav.Link href="#" className="nav-item text-center">
-        <img 
-          src="https://imageio.forbes.com/specials-images/imageserve/67531eb2b5f7c9e191f632d7/0x0.jpg?format=jpg&crop=711,713,x316,y125,safe&height=416&width=416&fit=bounds" 
-          width="24" 
-          height="24" 
-          className="rounded-circle" 
-          alt="me" 
-        />
+        <ListGroup.Item key={user._id}>
+          <img 
+            src={user.image} 
+            width="24" 
+            height="24" 
+            className="rounded-circle" 
+            alt="Foto profilo" 
+          />
+        </ListGroup.Item>
         <div className="nav-text">Me</div>
       </Nav.Link>
       <div className="vertical-divider"></div>
