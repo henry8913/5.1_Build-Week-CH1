@@ -1,15 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { HandThumbsUp, Chat, Share, Send } from 'react-bootstrap-icons'; // Import Bootstrap icons
+import { HandThumbsUp, Chat, Share, Send } from 'react-bootstrap-icons';
 import './css/ActivityComponent.css';
 
 export default function ActivityComponent() {
-  
-    const [seguito, setSeguito] = useState(false)
+
+    const [seguito, setSeguito] = useState(false);
+    const [user, setUser] = useState(null); // Added user state
+
     const handleSeguiClick = () => {
       setSeguito(!seguito);
-    }
-  
+    };
+
+    const url = import.meta.env.VITE_APIURL;
+    const authKey = import.meta.env.VITE_APIKEY;
+
+    useEffect(() => {
+        fetch(url, {
+            headers: {
+                'Authorization': authKey
+            }
+        })
+            .then((res) => res.json())
+            .then((data) => setUser(data))
+            .catch((err) => console.log('Error fetching user data:', err));
+    }, []);
+
+
   return (
     <Container className="activity-container">
       <div className="activity-header">
@@ -31,15 +48,15 @@ export default function ActivityComponent() {
           <Col xs={12} lg={6}>
             <div className="post-item">
               <div className="post-header">
-                <img src="https://media.licdn.com/dms/image/v2/C4E03AQEflj5sFpUNmA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1647262624341?e=1749686400&v=beta&t=TQ7RQNFTYieAtgMD8WkXWkRg0n2KxGhPU-cDr3VtwPI" className="profile-pic" alt="Profile" />
+                <img src={user?.image} className="profile-pic" alt="Profile" />
                 <div className="post-meta">
                   <div className="post-meta-header">
-                    <span className="author">Ivan Ranza</span>
+                    <span className="author">{user?.name || ''} {user?.surname || ''}</span>
                     <span className="dot">·</span>
                     <span className="connection">3° e oltre</span>
                     <Button variant="light" className="more-options">...</Button>
                   </div>
-                  <p className="role">Co-Founder & CEO at EPICODE & EPIC...</p>
+                  <p className="role">{user?.bio}</p>
                   <div className="post-time">
                     <span>3 giorni</span>
                     <span className="dot">·</span>
@@ -65,15 +82,15 @@ export default function ActivityComponent() {
           <Col xs={12} lg={6}>
             <div className="post-item">
               <div className="post-header">
-                <img src="https://media.licdn.com/dms/image/v2/C4E03AQEflj5sFpUNmA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1647262624341?e=1749686400&v=beta&t=TQ7RQNFTYieAtgMD8WkXWkRg0n2KxGhPU-cDr3VtwPI" className="profile-pic" alt="Profile" />
+                <img src={user?.image} className="profile-pic" alt="Profile" />
                 <div className="post-meta">
                   <div className="post-meta-header">
-                    <span className="author">Ivan Ranza</span>
+                    <span className="author">{user?.name || ''} {user?.surname || ''}</span>
                     <span className="dot">·</span>
                     <span className="connection">3° e oltre</span>
                     <Button variant="light" className="more-options">...</Button>
                   </div>
-                  <p className="role">Co-Founder & CEO at EPICODE & EPIC...</p>
+                  <p className="role">{user?.bio}</p>
                   <div className="post-time">
                     <span>1m</span>
                     <span className="dot">·</span>
