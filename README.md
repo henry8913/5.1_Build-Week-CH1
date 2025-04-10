@@ -1,6 +1,6 @@
 
 <h1 align="center">
-    <img src="https://readme-typing-svg.herokuapp.com/?font=Iosevka&size=24&color=0A66C2&center=true&vCenter=true&width=1200&height=60&lines=🔗+LinkedIn+Clone+|+Il+tuo+network+professionale+💼&repeat=false&duration=3000" alt="LinkedIn Clone">
+    <img src="https://readme-typing-svg.herokuapp.com/?font=Iosevka&size=34&color=0A66C2&center=true&vCenter=true&width=1200&height=60&lines=🔗+LinkedIn+Clone+|+Il+tuo+network+professionale+💼&repeat=false&duration=3000" alt="LinkedIn Clone">
 </h1>
 
 Un clone fedele dell'interfaccia di LinkedIn che permette di visualizzare profili, esperienze lavorative e attività utilizzando le API di Strive School.
