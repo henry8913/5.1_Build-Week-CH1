@@ -8,7 +8,7 @@ export default function Mynav() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showResults, setShowResults] = useState(false)
 
-  const url = import.meta.env.VITE_APIURL;
+  const url = import.meta.env.VITE_BASEURL
   const authKey = import.meta.env.VITE_APIKEY
 
   useEffect(() => {
