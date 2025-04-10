@@ -1,20 +1,86 @@
-import React from 'react'
-import { Col, Container, Form, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
+import React, {useState, useEffect} from 'react'
+import { Col, Container, Form, Nav, Navbar, ListGroup, NavDropdown, Row } from 'react-bootstrap';
 import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaTh } from 'react-icons/fa';
 
 export default function Mynav() {
+  const [profiles, setProfiles] = useState([])
+  const [filteredProfiles, setFilteredProfiles] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showResults, setShowResults] = useState(false)
+
+  const url = 'https://striveschool-api.herokuapp.com/api/profile/';
+  const authKey = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0MTk0ZDI4Y2E0YzAwMTU1MDE5MDkiLCJpYXQiOjE3NDQwNTA1MDksImV4cCI6MTc0NTI2MDEwOX0.aCZ7SqR6pUi2aVDW1E_YV6YKfCb1m7klWB7qnTP-wqM'
+  
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        'Authorization': authKey
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => setProfiles(data))
+      .catch((err) => console.log('Errore nel fetch:', err))
+  }, []);
+
+
+  
+  const handleSearchChange = (e) => {
+    const value = e.target.value
+    setSearchTerm(value)
+    setShowResults(value.length > 0)
+
+
+    const filtered = profiles.filter((profile) =>
+      profile.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredProfiles(filtered)
+  };
+
+
   return (
 
 <Navbar expand="lg" className="fixed-top bg-white border-bottom py-1">
 <Container className="d-flex align-items-center">
   <div className="d-flex align-items-center gap-2">
     <FaLinkedin size={40} color="#0A66C2"/>
-    <Form className="mx-2">
+    <Form className="mx-2 position-relative" style={{ width: '250px' }}>
       <Form.Control
         type="text"
         placeholder="Search"
         className="search-input"
+        value={searchTerm}
+        onChange={handleSearchChange}
+
       />
+       {showResults && filteredProfiles.length > 0 && (
+            <ListGroup
+              className="position-absolute shadow"
+              style={{
+                zIndex: 10,
+                width: '100%',
+                top: '100%',
+                maxHeight: '300px',
+                overflowY: 'auto'
+              }}
+            >
+                {filteredProfiles.slice(0, 8).map((profile) => (
+                <ListGroup.Item key={profile._id} className="d-flex align-items-center gap-2">
+                  <img
+                    src={profile.image}
+                    alt={profile.name}
+                    width="32"
+                    height="32"
+                    className="rounded-circle"
+                  />
+                  <div>
+                    <strong>{profile.name}</strong>
+                    <div style={{ fontSize: '12px' }}>{profile.title}</div>
+                  </div>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          )}
+
     </Form>
   </div>
   
