@@ -8,8 +8,10 @@ import HeroComponent from './component/HeroComponent';
 import InfoComponent from './component/InfoComponent';
 import ActivityComponent from './component/ActivityComponent';
 import ExperienceComponent from './component/ExperienceComponent';
+import EducationComponent from './component/EducationComponent';
 import Footer from './component/Footer';
 import Sidebar from './component/Sidebar';
+
 
 
 
@@ -34,6 +36,9 @@ function App() {
             </div>
             <div className="mb-3">
               <ExperienceComponent/>
+            </div>
+            <div className="mb-3">
+              <EducationComponent/>
             </div>
           </Col>
           <Col md={4}>
