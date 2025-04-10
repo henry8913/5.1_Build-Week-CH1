@@ -8,9 +8,9 @@ export default function Mynav() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showResults, setShowResults] = useState(false)
 
-  const url = 'https://striveschool-api.herokuapp.com/api/profile/';
-  const authKey = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0MTk0ZDI4Y2E0YzAwMTU1MDE5MDkiLCJpYXQiOjE3NDQwNTA1MDksImV4cCI6MTc0NTI2MDEwOX0.aCZ7SqR6pUi2aVDW1E_YV6YKfCb1m7klWB7qnTP-wqM'
-  
+  const url = import.meta.env.VITE_APIURL;
+  const authKey = import.meta.env.VITE_APIKEY
+
   useEffect(() => {
     fetch(url, {
       headers: {
