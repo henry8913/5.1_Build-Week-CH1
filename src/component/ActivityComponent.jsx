@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { HandThumbsUp, Chat, Share, Send } from 'react-bootstrap-icons'; // Import Bootstrap icons
 import './css/ActivityComponent.css';
 
 export default function ActivityComponent() {
+  
+    const [seguito, setSeguito] = useState(false)
+    const handleSeguiClick = () => {
+      setSeguito(!seguito);
+    }
+  
   return (
     <Container className="activity-container">
       <div className="activity-header">
@@ -11,7 +17,7 @@ export default function ActivityComponent() {
           <h2>Attività</h2>
           <span>4.915 follower</span>
         </div>
-        <Button variant="outline-secondary" className="follow-button">+ Segui</Button>
+        <Button variant="outline-secondary" className="follow-button" onClick={handleSeguiClick}> {seguito ? "Segui già" : "+ Segui"}</Button>
       </div>
 
       <div className="activity-tabs">

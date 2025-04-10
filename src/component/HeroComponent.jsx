@@ -1,9 +1,16 @@
 
-import React from 'react'
+import React, {useState} from 'react'
 import { Card, Button } from 'react-bootstrap';
 import './css/HeroComponent.css'
 
 export default function HeroComponent() {
+
+  const [seguito, setSeguito] = useState(false)
+  const handleSeguiClick = () => {
+    setSeguito(!seguito);
+  }
+
+
   return (
     <Card className="hero-card mb-2">
       <div className="cover-container">
@@ -47,7 +54,7 @@ export default function HeroComponent() {
         
         <div className="action-buttons">
           <Button variant="primary">Messaggio</Button>
-          <Button variant="outline-primary">+ Segui</Button>
+          <Button variant="outline-primary" onClick={handleSeguiClick}> {seguito ? "Segui già" : "+ Segui"}</Button>
           <Button variant="outline-secondary">Altro</Button>
         </div>
       </Card.Body>

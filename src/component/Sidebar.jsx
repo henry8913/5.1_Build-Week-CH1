@@ -1,9 +1,17 @@
 
-import React from 'react';
+import React, {useState} from 'react'
 import { Button } from 'react-bootstrap';
 import './css/Sidebar.css';
 
 export default function Sidebar() {
+
+    const [seguito, setSeguito] = useState({})
+    const handleSeguiClick = (name) => {
+      setSeguito(prevState => ({
+        ...prevState,
+        [name]: !prevState[name] 
+      }));
+    }
   const connections = [
     {
       name: "Alessandra Polcassi",
@@ -39,8 +47,13 @@ export default function Sidebar() {
               <div className="connection-name">{connection.name}</div>
               <div className="connection-title">{connection.title}</div>
             </div>
-            <Button variant="outline-secondary" size="sm" className="connection-button">
-              + Segui
+            <Button 
+              variant="outline-secondary" 
+              size="sm" 
+              className="connection-button"
+              onClick={() => handleSeguiClick(connection.name)}
+            >
+              {seguito[connection.name] ? "Segui già" : "+ Segui"}
             </Button>
           </div>
         ))}
