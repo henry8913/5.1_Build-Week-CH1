@@ -49,7 +49,7 @@ export default function HeroComponent() {
       <Card.Body>
         <div className="profile-info">
           <div className="main-info">
-            <h2>Ivan Ranza</h2>
+            <h2>{user?.name || ''} {user?.surname || ''}</h2>
 
 
             <ListGroup.Item>
@@ -57,7 +57,7 @@ export default function HeroComponent() {
             </ListGroup.Item>
 
 
-            <p className="location">Roma, Lazio, Italia · <a href="#" className="contact-link">Informazioni di contatto</a></p>
+            <p className="location">{user.area}, Italia · <a href="#" className="contact-link">Informazioni di contatto</a></p>
             <p className="connections">4.917 follower · Più di 500 collegamenti</p>
           </div>
           <div className="company-logos">
