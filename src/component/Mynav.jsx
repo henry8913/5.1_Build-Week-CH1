@@ -64,7 +64,7 @@ export default function Mynav() {
               }}
             >
                 {filteredProfiles.slice(0, 8).map((profile) => (
-                <ListGroup.Item key={profile._id} className="d-flex align-items-center gap-2">
+                <ListGroup.Item key={profile._id} className="d-flex align-items-center gap-2" style={{cursor:'pointer'}}>
                   <img
                     src={profile.image}
                     alt={profile.name}
