@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react'
-import { Card, Button, ListGroup } from 'react-bootstrap';
+import { Card, Button, ListGroup } from 'react-bootstrap'
 import './css/HeroComponent.css'
 
 export default function HeroComponent() {
 
   const [seguito, setSeguito] = useState(false)
   const handleSeguiClick = () => {
-    setSeguito(!seguito);
+    setSeguito(!seguito)
   }
 
-  const [users, setUsers] = useState([])
+  const [user, setUser] = useState([])
 
   const url = import.meta.env.VITE_APIURL;
   const authKey = import.meta.env.VITE_APIKEY
@@ -22,7 +22,7 @@ export default function HeroComponent() {
       }
     })
       .then((res) => res.json())
-      .then((data) => setUsers(data))
+      .then((user) => setUser(user))
       .catch((err) => console.log('Errore nel fetch:', err))
   }, [])
 
@@ -36,16 +36,13 @@ export default function HeroComponent() {
           className="cover-image"
         />
 
-
-
-        {users.map((user) => (
-          <ListGroup.Item key={user._id}  >
-            <img
-              src={user.image}
-              className="profile-img"
-              alt="Foto profilo"
-            />
-          </ListGroup.Item>))}
+        <ListGroup.Item key={user._id}  >
+          <img
+            src={user.image}
+            className="profile-img"
+            alt="Foto profilo"
+          />
+        </ListGroup.Item>
 
       </div>
 
@@ -53,7 +50,13 @@ export default function HeroComponent() {
         <div className="profile-info">
           <div className="main-info">
             <h2>Ivan Ranza</h2>
-            <p className="role">Co-Founder & CEO at EPICODE & EPICODE Institute of Technology</p>
+
+
+            <ListGroup.Item>
+              <p className="role">{user.bio}</p>
+            </ListGroup.Item>
+
+
             <p className="location">Roma, Lazio, Italia · <a href="#" className="contact-link">Informazioni di contatto</a></p>
             <p className="connections">4.917 follower · Più di 500 collegamenti</p>
           </div>
