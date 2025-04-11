@@ -1,6 +1,8 @@
 
 body {
   background-color: #f3f2ef;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .logo {
