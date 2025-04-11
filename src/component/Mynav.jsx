@@ -56,11 +56,11 @@ export default function Mynav() {
 
   return (
 
-<Navbar expand="lg" className="fixed-top bg-white border-bottom py-1">
+<Navbar expand="lg" className="fixed-top bg-white border-bottom py-1" collapseOnSelect>
 <Container className="d-flex align-items-center">
   <div className="d-flex align-items-center gap-2">
     <FaLinkedin size={40} color="#0A66C2"/>
-    <Form className="mx-2 position-relative" style={{ width: '250px' }}>
+    <Form className="mx-2 position-relative" style={{ width: 'auto' }}>
       <Form.Control
         type="text"
         placeholder="Search"
