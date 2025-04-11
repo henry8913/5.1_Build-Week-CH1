@@ -26,7 +26,7 @@ export default function ExperienceComponent() {
           <Card key={exp._id} className="experience-item">
             <div className="experience-content">
               <img 
-                src="https://media.licdn.com/dms/image/v2/C4E0BAQHYgix-Ynux1A/company-logo_100_100/company-logo_100_100/0/1646830188798/epicodeschool_logo?e=1749686400&v=beta&t=hya8yRFhK7TYDJKpNy9gyph0MJmrmHUm8ZzRLweiVzc" 
+                src={exp.image} 
                 alt={exp.company} 
                 className="company-logo" 
               />
