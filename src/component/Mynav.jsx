@@ -62,7 +62,9 @@ export default function Mynav() {
     <Navbar expand="lg" className="fixed-top bg-white border-bottom py-1" collapseOnSelect>
       <Container className="d-flex align-items-center">
         <div className="d-flex align-items-center gap-2">
-          <FaLinkedin size={40} color="#0A66C2" />
+          <Link to="/">
+            <FaLinkedin size={40} color="#0A66C2" />
+          </Link>
           <Form className="mx-2 position-relative" style={{ width: 'auto' }}>
             <Form.Control
               type="text"
