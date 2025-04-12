@@ -52,6 +52,9 @@ cp .env.example .env
 # Avvia il server di sviluppo
 npm run dev
 ```
+## 📸 Screenshot
+
+![Clone LinkedIn Screenshot](./public/img/screenshot.jpg)
 
 ## 🖥️ Struttura del Progetto
 
