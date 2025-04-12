@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Container, Form, Nav, Navbar, ListGroup, NavDropdown, Row } from 'react-bootstrap';
 import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaTh } from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
+
 
 export default function Mynav() {
   const [profiles, setProfiles] = useState([])
@@ -8,6 +10,7 @@ export default function Mynav() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showResults, setShowResults] = useState(false)
   const [user, setUser] = useState([])
+  const location = useLocation()
 
   const url = import.meta.env.VITE_APIURL
   const authKey = import.meta.env.VITE_APIKEY
@@ -35,7 +38,7 @@ export default function Mynav() {
   }, []);
 
 
-  
+
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
@@ -56,99 +59,111 @@ export default function Mynav() {
 
   return (
 
-<Navbar expand="lg" className="fixed-top bg-white border-bottom py-1" collapseOnSelect>
-<Container className="d-flex align-items-center">
-  <div className="d-flex align-items-center gap-2">
-    <FaLinkedin size={40} color="#0A66C2"/>
-    <Form className="mx-2 position-relative" style={{ width: 'auto' }}>
-      <Form.Control
-        type="text"
-        placeholder="Search"
-        className="search-input"
-        value={searchTerm}
-        onChange={handleSearchChange}
+    <Navbar expand="lg" className="fixed-top bg-white border-bottom py-1" collapseOnSelect>
+      <Container className="d-flex align-items-center">
+        <div className="d-flex align-items-center gap-2">
+          <FaLinkedin size={40} color="#0A66C2" />
+          <Form className="mx-2 position-relative" style={{ width: 'auto' }}>
+            <Form.Control
+              type="text"
+              placeholder="Search"
+              className="search-input"
+              value={searchTerm}
+              onChange={handleSearchChange}
 
-      />
-       {showResults && filteredProfiles.length > 0 && (
-            <ListGroup
-              className="position-absolute shadow"
-              style={{
-                zIndex: 10,
-                width: '100%',
-                top: '100%',
-                maxHeight: '300px',
-                overflowY: 'auto'
-              }}
-            >
+            />
+            {showResults && filteredProfiles.length > 0 && location.pathname === '/' && (
+              <ListGroup
+                className="position-absolute shadow"
+                style={{
+                  zIndex: 10,
+                  width: '100%',
+                  top: '100%',
+                  maxHeight: '300px',
+                  overflowY: 'auto'
+                }}
+              >
                 {filteredProfiles.slice(0, 8).map((profile) => (
-                <ListGroup.Item key={profile._id} className="d-flex align-items-center gap-2" style={{cursor:'pointer'}}>
-                  <img
-                    src={profile.image}
-                    alt={`${profile.name} ${profile.surname}`}
-                    width="32"
-                    height="32"
-                    className="rounded-circle"
-                  />
-                  <div>
-                    <strong>{profile.name} {profile.surname}</strong>
-                    <div style={{ fontSize: '12px' }}>{profile.title}</div>
-                  </div>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          )}
+                  <Link
+                    key={profile._id}
+                    to={`/profile/${profile._id}`}
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                    onClick={() => {
+                      setShowResults(false)
+                      setSearchTerm('')
+                    }}
+                  >
+                    <ListGroup.Item className="d-flex align-items-center gap-2" style={{ cursor: 'pointer' }}>
+                      <img
+                        src={profile.image}
+                        alt={`${profile.name} ${profile.surname}`}
+                        width="32"
+                        height="32"
+                        className="rounded-circle"
+                      />
+                      <div>
+                        <strong>{profile.name} {profile.surname}</strong>
+                        <div style={{ fontSize: '12px' }}>{profile.title}</div>
+                      </div>
+                    </ListGroup.Item>
+                  </Link>
+                ))}
+              </ListGroup>
+            )}
 
-    </Form>
-  </div>
-  
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mx-auto d-flex align-items-center gap-1">
-      <Nav.Link href="#" className="nav-item text-center px-3">
-        <FaHome size={22} />
-        <div className="nav-text">Home</div>
-      </Nav.Link>
-      <Nav.Link href="#" className="nav-item text-center px-3">
-        <FaUserFriends size={22} />
-        <div className="nav-text">My Network</div>
-      </Nav.Link>
-      <Nav.Link href="#" className="nav-item text-center px-3">
-        <FaBriefcase size={22} />
-        <div className="nav-text">Jobs</div>
-      </Nav.Link>
-      <Nav.Link href="#" className="nav-item text-center px-3">
-        <FaCommentDots size={22} />
-        <div className="nav-text">Messaging</div>
-      </Nav.Link>
-      <Nav.Link href="#" className="nav-item text-center px-3">
-        <FaBell size={22} />
-        <div className="nav-text">Notifications</div>
-      </Nav.Link>
-    </Nav>
-    
-    <Nav className="d-flex align-items-center gap-2">
-      <Nav.Link href="#" className="nav-item text-center">
-        <ListGroup.Item key={user._id}>
-          <img 
-            src={user.image} 
-            width="24" 
-            height="24" 
-            className="rounded-circle" 
-            alt="Foto profilo" 
-          />
-        </ListGroup.Item>
-        <div className="nav-text">Me</div>
-      </Nav.Link>
-      <div className="vertical-divider"></div>
-      <Nav.Link href="#" className="nav-item text-center">
-        <FaTh size={22} />
-        <div className="nav-text">Work</div>
-      </Nav.Link>
-      <Nav.Link href="#" className="premium-link">Try Premium for €0</Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Container>
-</Navbar>
+
+          </Form>
+        </div>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-auto d-flex align-items-center gap-1">
+            <Link to="/" className="nav-item text-center px-3 nav-link">
+              <FaHome size={22} />
+              <div className="nav-text">Home</div>
+            </Link>
+
+            <Nav.Link href="#" className="nav-item text-center px-3">
+              <FaUserFriends size={22} />
+              <div className="nav-text">My Network</div>
+            </Nav.Link>
+            <Nav.Link href="#" className="nav-item text-center px-3">
+              <FaBriefcase size={22} />
+              <div className="nav-text">Jobs</div>
+            </Nav.Link>
+            <Nav.Link href="#" className="nav-item text-center px-3">
+              <FaCommentDots size={22} />
+              <div className="nav-text">Messaging</div>
+            </Nav.Link>
+            <Nav.Link href="#" className="nav-item text-center px-3">
+              <FaBell size={22} />
+              <div className="nav-text">Notifications</div>
+            </Nav.Link>
+          </Nav>
+
+          <Nav className="d-flex align-items-center gap-2">
+            <Nav.Link href="#" className="nav-item text-center">
+              <ListGroup.Item key={user._id}>
+                <img
+                  src={user.image}
+                  width="24"
+                  height="24"
+                  className="rounded-circle"
+                  alt="Foto profilo"
+                />
+              </ListGroup.Item>
+              <div className="nav-text">Me</div>
+            </Nav.Link>
+            <div className="vertical-divider"></div>
+            <Nav.Link href="#" className="nav-item text-center">
+              <FaTh size={22} />
+              <div className="nav-text">Work</div>
+            </Nav.Link>
+            <Nav.Link href="#" className="premium-link">Try Premium for €0</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
